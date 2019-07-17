@@ -13,8 +13,11 @@ class Admin extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Admin Sipapat | Dashboard';
+		$data['users'] = $this->db->get('users')->result_array();
+		$data['log'] = $this->db->get('log_login')->result_array();
+		$data['berita'] = $this->db->get('berita')->result_array();
 		$this->load->view('admin/templates/header', $data);
-		$this->load->view('admin/pages/index');
+		$this->load->view('admin/pages/index', $data);
 		$this->load->view('admin/templates/footer');
 	}
 
@@ -68,8 +71,6 @@ class Admin extends CI_Controller
 
 	public function tambah_user()
 	{
-		$users = $this->db->get('users')->row_array();
-
 		$name = $this->input->post('nama');
 		$slug = explode(' ', $name);
 		$slug = strtolower(implode('-', $slug));
@@ -116,16 +117,12 @@ class Admin extends CI_Controller
 				$this->load->view('admin/pages/add_user', $error);
 				$this->load->view('admin/templates/footer');
 			} else {
-				if ($email == $users['email'])
+				if ($this->db->get_where('users', array('email' => $email))->row_array())
 				{
-					$this->db->insert('users', $data);
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email is already used!</div>');
 	            	redirect('admin/add_user');
 				} else {
 					$foto = $this->upload->data('file_name');
-					// $_foto = explode('.', $foto);
-					// $gambar = $_foto[0].'-'.$slug;
-					// $gambar .= '.'.end($_foto);
 					$data = array(
 						'name' => $name,
 						'slug' => $slug,
@@ -162,6 +159,81 @@ class Admin extends CI_Controller
 				$this->db->delete('users', array('id' => $id));
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete data successfully!</div>');
             	redirect('menu/tbl_users');
+			}
+		}
+	}
+
+	public function update($id = null)
+	{
+		$user = $this->db->get_where('users', array('id' => $id))->row_array();
+		if ($user['id'] !== $id)
+		{
+			show_404();
+		} else if ($id == null) {
+			show_404();
+		}
+		$this->load->view('admin/templates/header', array('title' => 'Admin Sipapat | update user'));
+		$this->load->view('admin/pages/update_user', array('error' => '', 'user' => $user));
+		$this->load->view('admin/templates/footer');
+	}
+
+	public function ubah_user()
+	{
+		$id = $this->input->post('id');
+		$user = $this->db->get_where('users', array('id' => $id))->row_array();
+		$name = $this->input->post('name');
+		$email = $this->input->post('email');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		switch ($this->input->post('role_id')) {
+			case 'admin' :
+				$role_id = 1;
+			break;
+			case 'editor' :
+				$role_id = 2;
+			break;
+			case 'visitor' :
+				$role_id = 3;
+			break;
+		}
+
+		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim');
+
+		$config['upload_path'] = './assets/images/users/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size'] = 1024;
+		$config['max_width'] = 1024;
+		$config['max_height'] = 768;
+
+		$this->load->library('upload', $config);
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('admin/templates/header', array('title' => 'Admin Sipapat | edit user'));
+			$this->load->view('admin/pages/update_user', array('error' => '', 'user' => $user));
+			$this->load->view('admin/templates/footer');
+		} else {
+			if ( ! $this->upload->do_upload('foto'))
+			{
+				$this->load->view('admin/templates/header', array('title' => 'Admin Sipapat | edit user'));
+				$this->load->view('admin/pages/update_user', array('error' => $this->upload->display_errors(), 'user' => $user));
+				$this->load->view('admin/templates/footer');
+			} else {
+				$foto = $this->upload->data('file_name');
+				$data = array(
+					'name' => $name,
+					'email' => $email,
+					'username' => $username,
+					'password' => $password,
+					'role_id' => $role_id,
+					'gambar' => $foto
+				);
+				$this->db->where('id', $id);
+				$this->db->update('users', $data);
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data successfully!</div>');
+            	redirect('admin/update');
 			}
 		}
 	}

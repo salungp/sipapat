@@ -11,8 +11,8 @@
 		        <a class="nav-link" href="<?= base_url(); ?>">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('acara'); ?>">Acara</a>
-		      </li>
+		        <a class="nav-link" href="<?= base_url('acara.html'); ?>">Acara</a>
+		      </li><!-- 
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Kategori
@@ -22,31 +22,16 @@
 		          <a class="dropdown-item" href="#">Dua</a>
 		          <a class="dropdown-item" href="#">Tiga</a>
 		          <a class="dropdown-item" href="#">Empat</a>
-		          <a class="dropdown-item" href="#">Lima</a>
-		          <a class="nav-item dropdown" style="position: relative;">
-			        <a style="margin-left: 15px;" class="nav-link dropdown-toggle drop" href="#" id="subMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-			          Kategori
-			        </a>
-			        <div style="left: 100%;top: 50%;" class="dropdown-menu drop-menu" aria-labelledby="subMenu">
-			          <a class="dropdown-item" href="#">Satu</a>
-			          <a class="dropdown-item" href="#">Dua</a>
-			          <a class="dropdown-item" href="#">Tiga</a>
-			          <a class="dropdown-item" href="#">Empat</a>
-			          <a class="dropdown-item" href="#">Lima</a>
-			          <a class="dropdown-item" href="#">Enam</a>
-			        </div>
-			      </a>
-		          <a class="dropdown-item" href="#">Enam</a>
 		        </div>
-		      </li>
+		      </li> -->
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('tentang'); ?>">Info Srobyong</a>
+		        <a class="nav-link" href="<?= base_url('tentang.html'); ?>">Info Srobyong</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Berita</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('kontak'); ?>">Kontak</a>
+		        <a class="nav-link" href="<?= base_url('kontak.html'); ?>">Kontak</a>
 		      </li>
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0" action="<?= base_url('cari'); ?>" method="GET">

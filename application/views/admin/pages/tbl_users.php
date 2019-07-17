@@ -10,7 +10,6 @@
       <li><a href="#">Tabel</a></li>
       <li class="active">Users</li>
     </ol>
-    <?= $this->session->flashdata('message'); ?>
   </div>
   <div class="content">
     <div class="row">

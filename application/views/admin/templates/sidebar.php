@@ -41,7 +41,7 @@
       </a>
       <ul class="treeview-menu">
         <li><a href="<?= base_url('admin/add_content'); ?>"><i class="fa fa-circle-o"></i> Tambah Konten</a></li>
-        <li><a href="<?= base_url('admin/page_artikel'); ?>"><i class="fa fa-circle-o"></i> Content Preview</a></li>
+        <li><a href="<?= base_url(); ?>"><i class="fa fa-circle-o"></i> Content Preview</a></li>
       </ul>
     </li>
     <li>
@@ -79,16 +79,6 @@
         <span class="pull-right-container">
           <small class="label pull-right bg-red">3</small>
           <small class="label pull-right bg-blue">17</small>
-        </span>
-      </a>
-    </li>
-    <li>
-      <a href="pages/mailbox/mailbox.html">
-        <i class="fa fa-envelope"></i> <span>Mailbox</span>
-        <span class="pull-right-container">
-          <small class="label pull-right bg-yellow">12</small>
-          <small class="label pull-right bg-green">16</small>
-          <small class="label pull-right bg-red">5</small>
         </span>
       </a>
     </li>
