@@ -111,4 +111,23 @@ class Home extends CI_Controller
 			}
 		}
 	}
+
+	public function subscribe()
+	{
+		$email = htmlspecialchars($this->input->post('email'));
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('public/templates/header', array('title' => 'Sipapat | Beranda'));
+			$this->load->view('public/pages/index');
+			$this->load->view('public/templates/footer');
+		} else {
+			if ($this->db->insert('subscriber', array('email' => $email)))
+			{
+				redirect();
+			} else {
+				redirect();
+			}
+		}
+	}
 }

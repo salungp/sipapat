@@ -39,6 +39,39 @@ class Menu extends CI_Controller
     	$this->load->view('admin/templates/footer');
     }
 
+    public function tbl_subscriber()
+    {
+        $this->load->view('admin/templates/header', array('title' => 'Admin Sipapat | Tabel Subscriber'));
+        $this->load->view('admin/pages/tbl_subscriber', array('subscriber' => $this->db->get('subscriber')->result_array()));
+        $this->load->view('admin/templates/footer');
+    }
+
+    public function subs_delete($id = null)
+    {
+        $this->db->select('id');
+        $subs = $this->db->get_where('subscriber', array('id' => $id))->row_array();
+        if ( ! is_null($id))
+        {
+            if ($subs['id'] == $id)
+            {
+                if ($this->db->delete('subscriber', array('id' => $id)))
+                {
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Delete data successfully!</div>');
+                    redirect('menu/tbl_subscriber');
+                } else {
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Delete data failed!</div>');
+                    redirect('menu/tbl_subscriber');
+                }
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Data with id '.$id.' not found!</div>');
+                redirect('menu/tbl_subscriber');
+            }
+        } else {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Id cannot be null!</div>');
+            redirect('menu/tbl_subscriber');
+        }
+    }
+
     public function log_delete($id = null)
     {
         $log = $this->db->get_where('log_login', array('id' => $id))->row_array();
@@ -60,7 +93,7 @@ class Menu extends CI_Controller
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Id empty!</div>');
-                redirect('menu/tbl_log_login');
+            redirect('menu/tbl_log_login');
         }
     }
 

@@ -13,5 +13,6 @@ $route['kontak'] = 'home/kontak';
 $route['kirim_kontak'] = 'home/kirim_kontak';
 $route['kategori/(:any)'] = 'home/kategori/$1';
 $route['cari'] = 'home/cari';
+$route['subscribe'] = 'home/subscribe';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

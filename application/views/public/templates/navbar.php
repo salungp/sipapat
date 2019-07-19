@@ -28,9 +28,6 @@
 		        <a class="nav-link" href="<?= base_url('tentang'); ?>">Info Srobyong</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Berita</a>
-		      </li>
-		      <li class="nav-item">
 		        <a class="nav-link" href="<?= base_url('kontak'); ?>">Kontak</a>
 		      </li>
 		    </ul>

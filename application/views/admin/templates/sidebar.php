@@ -79,6 +79,11 @@
       </a>
     </li>
     <li>
+      <a href="<?= base_url('menu/tbl_subscriber'); ?>">
+        <i class="fa fa-comments"></i> <span>Subscriber</span>
+      </a>
+    </li>
+    <li>
       <a href="<?= base_url('admin/calendar'); ?>">
         <i class="fa fa-calendar"></i> <span>Calendar</span>
         <span class="pull-right-container">
