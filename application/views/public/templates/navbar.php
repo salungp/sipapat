@@ -11,7 +11,7 @@
 		        <a class="nav-link" href="<?= base_url(); ?>">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('acara.html'); ?>">Acara</a>
+		        <a class="nav-link" href="<?= base_url('acara'); ?>">Acara</a>
 		      </li><!-- 
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -25,13 +25,13 @@
 		        </div>
 		      </li> -->
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('tentang.html'); ?>">Info Srobyong</a>
+		        <a class="nav-link" href="<?= base_url('tentang'); ?>">Info Srobyong</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="#">Berita</a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="<?= base_url('kontak.html'); ?>">Kontak</a>
+		        <a class="nav-link" href="<?= base_url('kontak'); ?>">Kontak</a>
 		      </li>
 		    </ul>
 		    <form class="form-inline my-2 my-lg-0" action="<?= base_url('cari'); ?>" method="GET">

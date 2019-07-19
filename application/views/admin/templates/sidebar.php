@@ -6,7 +6,7 @@
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
-      <img src="<?= base_url('assets/images/users/'.$userdata['gambar']); ?>" class="img-circle" alt="<?= $userdata['gambar']; ?>">
+      <img src="<?= base_url('assets/images/users/'.$userdata['gambar']); ?>" class="img-circle" alt="<?= $userdata['gambar']; ?>" style="height: 32px;width: 32px;object-fit: cover;">
     </div>
     <div class="pull-left info">
       <p><?= $userdata['nama']; ?></p>
@@ -72,6 +72,11 @@
         <li><a href="<?= base_url('menu/tbl_users'); ?>"><i class="fa fa-circle-o"></i> User Admin</a></li>
         <li><a href="<?= base_url(''); ?>"><i class="fa fa-circle-o"></i> Donatur</a></li>
       </ul>
+    </li>
+    <li>
+      <a href="<?= base_url('menu/tbl_kontak'); ?>">
+        <i class="fa fa-comments"></i> <span>Kontak</span>
+      </a>
     </li>
     <li>
       <a href="<?= base_url('admin/calendar'); ?>">

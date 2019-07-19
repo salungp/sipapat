@@ -1,8 +1,8 @@
 <div class="col-md-9 p-3">
 	<div class="content-wrapper mb-2" style="background: #f2f2f2;">
-		<div class="item">
+		<div class="item" id="text">
 			<h1>Selamat datang di website desa <strong>Srobyong</strong>.</h1>
-			<a href="#artikel" class="btn-custom mr-1" style="font-weight: bold;">Ayo Jelajahi! <i class="fas fa-arrow-right"></i></a>
+			<a href="#artikel" id="btn" class="btn-custom mr-1" style="font-weight: bold;">Ayo Kunjungi <i class="fas fa-arrow-right"></i></a>
 		</div>
 	</div>
 	<div class="artikel">
@@ -23,7 +23,7 @@
 									<?= $artikel['deskripsi']; ?>
 								<?php endif; ?>
 							</p>
-							<a class="mr-2" class="a"><?= $artikel['created_at']; ?></a><a class="a">By <?= $artikel['author']; ?></a>
+							<a class="mr-2" class="a"><?= date('D M Y', strtotime($artikel['created_at'])); ?></a><a class="a">By <?= $artikel['author']; ?></a>
 						</div>
 						<div class="artikel-image">
 							<img src="<?= base_url('assets/images/berita/'.$artikel['gambar']); ?>">

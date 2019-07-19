@@ -1,13 +1,13 @@
 <div class="content-wrapper">
   <div class="content-header">
     <h1>
-      Log Login
-      <small>Detail dari log login</small>
+      Detail Kontak
+      <small>Tabel kontak</small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
       <li><a href="#">Tabel</a></li>
-      <li class="active">Log Login</li>
+      <li class="active">Kontak</li>
     </ol>
     <?= $this->session->flashdata('message'); ?>
   </div>
@@ -16,12 +16,12 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
-            <h3 class="box-title">Tabel Log</h3>
+            <h3 class="box-title">Tabel Kontak</h3>
             <div class="box-tools">
-              <form action="<?= base_url('menu/search/log_login'); ?>" method="get">
+              <form action="<?= base_url('menu/search/kontak'); ?>" method="get">
                 <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="key" class="form-control pull-right" placeholder="Search">
-                    <input type="hidden" name="field" value="username">
+                    <input type="hidden" name="field" value="nama">
                     <div class="input-group-btn">
                       <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                     </div>
@@ -35,35 +35,22 @@
               <tr>
                 <th>No</th>
                 <th>ID</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Login at</th>
-                <th>Type</th>
+                <th>Nama</th>
+                <th>Email</th>
+                <th>Pesan</th>
+                <th>Waktu</th>
                 <th>Aksi</th>
               </tr>
               <?php $i = 1; ?>
-              <?php foreach ($log_login as $log) : ?>
+              <?php foreach ($kontak as $item) : ?>
                 <tr>
                   <td><?= $i; ?></td>
-                  <td><?= $log['id']; ?></td>
-                  <td><?= $log['username']; ?></td>
-                  <td><?= $log['password']; ?></td>
-                  <td><?= $log['created_at']; ?></td>
-                  <td>
-                    <?php
-                    switch ($log['type']) {
-                      case 'success' :
-                        echo '<div class="label label-success">'.$log['type'].'</div>';
-                      break;
-                      case 'wrong password' :
-                        echo '<div class="label label-warning">'.$log['type'].'</div>';
-                      break;
-                      case 'failed email' :
-                        echo '<div class="label label-danger">'.$log['type'].'</div>';
-                      break;
-                    } ?>
-                  </td>
-                  <td><a href="<?= base_url('menu/log_delete/'.$log['id']); ?>" class="btn btn-danger" style="margin-bottom: 20px;"><i class="fa fa-trash"></i></a></td>
+                  <td><?= $item['id']; ?></td>
+                  <td><?= $item['nama']; ?></td>
+                  <td><?= $item['email']; ?></td>
+                  <td><?= $item['pesan']; ?></td>
+                  <td><?= $item['created_at']; ?></td>
+                  <td><a href="<?= base_url('menu/kontak_delete/'.$item['id']); ?>" class="btn btn-danger" style="margin-bottom: 20px;"><i class="fa fa-trash"></i></a></td>
                 </tr>
                 <?php $i++; ?>
               <?php endforeach; ?>

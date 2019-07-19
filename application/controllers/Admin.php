@@ -181,10 +181,10 @@ class Admin extends CI_Controller
 	{
 		$id = $this->input->post('id');
 		$user = $this->db->get_where('users', array('id' => $id))->row_array();
-		$name = $this->input->post('name');
-		$email = $this->input->post('email');
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
+		$name = htmlspecialchars($this->input->post('name'));
+		$email = htmlspecialchars($this->input->post('email'));
+		$username = htmlspecialchars($this->input->post('username'));
+		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 		switch ($this->input->post('role_id')) {
 			case 'admin' :
 				$role_id = 1;
@@ -193,6 +193,9 @@ class Admin extends CI_Controller
 				$role_id = 2;
 			break;
 			case 'visitor' :
+				$role_id = 3;
+			break;
+			default :
 				$role_id = 3;
 			break;
 		}

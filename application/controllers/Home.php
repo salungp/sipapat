@@ -1,7 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 class Home extends CI_Controller
 {
+	public function __construct()
+	{
+		parent::__construct();
+		$this->load->library('form_validation');
+	}
+
 	public function index()
 	{
 		$this->db->order_by('id', 'DESC');
@@ -54,6 +61,13 @@ class Home extends CI_Controller
 		}
 	}
 
+	public function kontak()
+	{
+		$this->load->view('public/templates/header', array('title' => 'Sipapat | Kontak'));
+		$this->load->view('public/pages/kontak');
+		$this->load->view('public/templates/footer');
+	}
+
 	public function cari()
 	{
 		$key = $this->input->get('key');
@@ -63,5 +77,38 @@ class Home extends CI_Controller
 		$this->load->view('public/templates/header', array('title' => 'Sipapat | cari artikel'));
 		$this->load->view('public/pages/index', $data);
 		$this->load->view('public/templates/footer');
+	}
+
+	public function kirim_kontak()
+	{
+		$nama = htmlspecialchars($this->input->post('nama'));
+		$email = htmlspecialchars($this->input->post('email'));
+		$pesan = htmlspecialchars($this->input->post('pesan'));
+
+		$this->form_validation->set_rules('nama', 'Nama', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('pesan', 'Pesan', 'required|trim');
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('public/templates/header', array('title' => 'Sipapat | Kontak'));
+			$this->load->view('public/pages/kontak');
+			$this->load->view('public/templates/footer');
+		} else {
+			$data = array(
+				'nama' => $nama,
+				'email' => $email,
+				'pesan' => $pesan
+			);
+
+			if ($this->db->insert('kontak', $data))
+			{
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Kontak berhasil dikirim!</div>');
+            	redirect('kontak');
+			} else {
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Kontak gagal dikirim!</div>');
+            	redirect('kontak');
+			}
+		}
 	}
 }
