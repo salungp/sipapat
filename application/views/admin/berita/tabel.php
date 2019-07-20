@@ -1,4 +1,3 @@
-<?php $userdata = $this->session->userdata(); ?>
 <div class="content-wrapper">
   <div class="content-header">
     <h1>
@@ -10,15 +9,15 @@
       <li><a href="#">Tabel</a></li>
       <li class="active">Berita</li>
     </ol>
+    <?= $this->session->flashdata('message'); ?>
   </div>
   <div class="content">
     <div class="row">
-      <?= $this->session->flashdata('message'); ?>
       <div class="col-xs-12">
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Tabel Berita</h3>
-            <?php if ($userdata['role_id'] == 1) : ?>
+            <?php if (USER['role_id'] == 1) : ?>
               <a href="<?= base_url('berita/tambah'); ?>" class="btn btn-danger"><b style="font-size: 17px;">+</b></a>
             <?php endif; ?>
             <div class="box-tools">
