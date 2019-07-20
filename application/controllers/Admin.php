@@ -236,6 +236,7 @@ class Admin extends CI_Controller
 					'role_id' => $role_id,
 					'gambar' => $foto
 				);
+				unlink('./assets/images/users/'.$user['gambar']);
 				$this->db->where('id', $id);
 				$this->db->update('users', $data);
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data successfully!</div>');
