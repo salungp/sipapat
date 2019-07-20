@@ -1,4 +1,3 @@
-<?php $userdata = $this->session->userdata(); ?>
 <div class="content-wrapper">
   <div class="content-header">
     <h1>
@@ -10,6 +9,7 @@
       <li><a href="#">Tabel</a></li>
       <li class="active">Users</li>
     </ol>
+    <?= $this->session->flashdata('message'); ?>
   </div>
   <div class="content">
     <div class="row">
@@ -17,7 +17,7 @@
         <div class="box">
           <div class="box-header">
             <h3 class="box-title">Tabel Users</h3>
-            <?php if ($userdata['role_id'] == 1) : ?>
+            <?php if (USER['role_id'] == 1) : ?>
               <a href="<?= base_url('admin/add_user'); ?>" class="btn btn-danger"><i class="fa fa-user-plus"></i></a>
             <?php endif; ?>
             <div class="box-tools">
@@ -48,7 +48,7 @@
                 <th>Created at</th>
                 <th>Updated at</th>
                 <th>Gambar</th>
-                <?php if ($userdata['role_id'] == 1) : ?>
+                <?php if (USER['role_id'] == 1) : ?>
                   <th>Aksi</th>
                 <?php endif; ?>
               </tr>
@@ -82,7 +82,7 @@
                   <td><?= $user['created_at']; ?></td>
                   <td><?= $user['updated_at']; ?></td>
                   <td><?= $user['gambar']; ?></td>
-                  <?php if ($userdata['role_id'] == 1) : ?>
+                  <?php if (USER['role_id'] == 1) : ?>
                     <th>
                       <a href="<?= base_url('admin/delete/'.$user['id']); ?>" class="btn btn-danger" style="margin-bottom: 20px;"><i class="fa fa-trash"></i></a>
                       <a href="<?= base_url('admin/update/'.$user['id']); ?>" class="btn btn-primary"><i class="fa fa-pencil-square-o"></i></a>

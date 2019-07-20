@@ -8,6 +8,7 @@ class Berita extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		is_logged_in();
+		define('USER', $this->db->get_where('users', array('token_id' => $this->session->userdata('token')))->row_array());
 	}
 
 	public function index()

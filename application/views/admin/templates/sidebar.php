@@ -1,4 +1,3 @@
-<?php $userdata = $this->session->userdata(); ?>
 <!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 <!-- sidebar: style can be found in sidebar.less -->
@@ -6,10 +5,10 @@
   <!-- Sidebar user panel -->
   <div class="user-panel">
     <div class="pull-left image">
-      <img src="<?= base_url('assets/images/users/'.$userdata['gambar']); ?>" class="img-circle" alt="<?= $userdata['gambar']; ?>" style="height: 32px;width: 32px;object-fit: cover;">
+      <img src="<?= base_url('assets/images/users/'.USER['gambar']); ?>" class="img-circle" alt="<?= USER['gambar']; ?>" style="height: 32px;width: 32px;object-fit: cover;">
     </div>
     <div class="pull-left info">
-      <p><?= $userdata['nama']; ?></p>
+      <p><?= USER['name']; ?></p>
       <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
     </div>
   </div>

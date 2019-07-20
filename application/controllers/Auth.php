@@ -40,10 +40,7 @@ class Auth extends CI_Controller
             {
                 $data = array(
                     'logged_in' => TRUE,
-                    'nama' => $user['name'],
-                    'email' => $user['email'],
-                    'gambar' => $user['gambar'],
-                    'role_id' => $user['role_id']
+                    'token' => $user['token_id']
                 );
                 $this->db->insert('log_login', array('username' => $username, 'password' => $password, 'type' => 'success'));
                 $this->session->set_userdata($data);

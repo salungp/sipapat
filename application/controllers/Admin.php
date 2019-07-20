@@ -8,6 +8,7 @@ class Admin extends CI_Controller
 		parent::__construct();
 		$this->load->library('form_validation');
 		is_logged_in();
+		define('USER', $this->db->get_where('users', array('token_id' => $this->session->userdata('token')))->row_array());
 	}
 
 	public function index()
@@ -77,6 +78,7 @@ class Admin extends CI_Controller
 		$email = $this->input->post('email');
 		$username = $this->input->post('username');
 		$password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+		$token_id = hash('ripemd160', $username);
 		switch ($this->input->post('role_id')) {
 			case 'admin':
 				$role_id = 1;
@@ -130,7 +132,8 @@ class Admin extends CI_Controller
 						'username' => $username,
 						'password' => $password,
 						'role_id' => $role_id,
-						'gambar' => $foto
+						'gambar' => $foto,
+						'token_id' => $token_id
 					);
 					$this->db->insert('users', $data);
 					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Insert data successfully!</div>');
@@ -236,7 +239,7 @@ class Admin extends CI_Controller
 				$this->db->where('id', $id);
 				$this->db->update('users', $data);
 				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Update data successfully!</div>');
-            	redirect('admin/update');
+            	redirect('menu/tbl_users');
 			}
 		}
 	}

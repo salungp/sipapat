@@ -7,6 +7,7 @@ class Menu extends CI_Controller
     {
         parent::__construct();
         is_logged_in();
+        define('USER', $this->db->get_where('users', array('token_id' => $this->session->userdata('token')))->row_array());
     }
 
     public function index()

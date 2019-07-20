@@ -1,4 +1,3 @@
-<?php $userdata = $this->session->userdata(); ?>
 <header class="main-header">
   <!-- Logo -->
   <a href="<?= base_url('admin'); ?>" class="logo">
@@ -55,17 +54,17 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="<?= base_url('assets/images/users/'.$userdata['gambar']); ?>" class="user-image" alt="<?= $userdata['gambar']; ?>">
-            <span class="hidden-xs"><?= $userdata['nama']; ?></span>
+            <img src="<?= base_url('assets/images/users/'.USER['gambar']); ?>" class="user-image" alt="<?= USER['gambar']; ?>">
+            <span class="hidden-xs"><?= USER['name']; ?></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="<?= base_url('assets/images/users/'.$userdata['gambar']); ?>" class="img-circle" alt="<?= $userdata['gambar']; ?>">
+              <img src="<?= base_url('assets/images/users/'.USER['gambar']); ?>" class="img-circle" alt="<?= USER['gambar']; ?>">
 
               <p>
-                <?= $userdata['nama']; ?>
-                <small>Member since Nov. 2012</small>
+                <?= USER['nama']; ?>
+                <small>Member since <?= date('M Y', strtotime(USER['created_at'])); ?></small>
               </p>
             </li>
             <!-- Menu Footer-->
