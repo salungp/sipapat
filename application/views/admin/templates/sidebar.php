@@ -60,6 +60,11 @@
         <li><a href="<?= base_url('berita/tambah'); ?>"><i class="fa fa-circle-o"></i> Tambah Berita</a></li>
       </ul>
     </li>
+    <li>
+      <a href="<?= base_url('acara/index'); ?>">
+        <i class="fa fa-calendar-plus-o"></i> <span>Acara</span>
+      </a>
+    </li>
     <li class="treeview">
       <a href="#">
         <i class="fa fa-users"></i> <span>Users</span>
@@ -79,7 +84,7 @@
     </li>
     <li>
       <a href="<?= base_url('menu/tbl_subscriber'); ?>">
-        <i class="fa fa-comments"></i> <span>Subscriber</span>
+        <i class="fa fa-rocket"></i> <span>Subscriber</span>
       </a>
     </li>
     <li>

@@ -16,6 +16,10 @@ li, a, p, label {
 	color: #333;
 }
 
+article {
+	padding: 30px 0;
+}
+
 .content-wrapper {
 	position: relative;
 	background-size: cover;

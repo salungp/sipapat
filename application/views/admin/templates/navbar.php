@@ -63,7 +63,7 @@
               <img src="<?= base_url('assets/images/users/'.USER['gambar']); ?>" class="img-circle" alt="<?= USER['gambar']; ?>">
 
               <p>
-                <?= USER['nama']; ?>
+                <?= USER['name']; ?>
                 <small>Member since <?= date('M Y', strtotime(USER['created_at'])); ?></small>
               </p>
             </li>

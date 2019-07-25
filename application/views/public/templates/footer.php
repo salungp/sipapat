@@ -1,4 +1,3 @@
-						<?php $this->load->view('public/templates/sidebar'); ?>
 					</div>
 				</div>
 			</div>

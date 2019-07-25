@@ -97,6 +97,7 @@ class Berita extends CI_Controller
 
 	public function delete($id = null)
 	{
+		$this->db->select('id');
 		$berita = $this->db->get_where('berita', array('id' => $id))->row_array();
 
 		if ( ! is_null($id))

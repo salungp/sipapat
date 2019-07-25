@@ -1,12 +1,6 @@
 <div class="col-md-9 p-3">
-	<div class="content-wrapper mb-2" style="background: #f2f2f2;">
-		<div class="item" id="text">
-			<h1>Selamat datang di website desa <strong>Srobyong</strong>.</h1>
-			<a href="#artikel" id="btn" class="btn-custom mr-1" style="font-weight: bold;">Ayo Kunjungi <i class="fas fa-arrow-right"></i></a>
-		</div>
-	</div>
 	<div class="artikel">
-		<h5>Berita</h5>
+		<h5>Berita baru baru ini</h5>
 		<hr class="divider">
 		<?php if (count($berita) < 1) : ?>
 			<h3>Not Result found!</h3>
@@ -35,5 +29,7 @@
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</div>
-	<?php $this->load->view('public/templates/pagination'); ?>
 </div>
+<?php $this->load->view('public/templates/sidebar'); ?>	
+
+

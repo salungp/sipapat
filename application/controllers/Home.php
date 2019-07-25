@@ -26,6 +26,8 @@ class Home extends CI_Controller
 	public function artikel($slug = null)
 	{
 		$data['artikel'] = $this->db->get_where('berita', array('slug' => $slug))->row_array();
+		// $this->db->where('slug', $slug);
+		// $this->db->update('berita', array('jumlah_pembaca' => $data['artikel']['jumlah_pembaca']+1));
 		if (is_null($data['artikel']))
 		{
 			show_404();
@@ -38,7 +40,8 @@ class Home extends CI_Controller
 	public function acara()
 	{
 		$this->load->view('public/templates/header', array('title' => 'Sipapat | acara'));
-		$this->load->view('public/pages/acara');
+		$this->db->order_by('id', 'DESC');
+		$this->load->view('public/pages/acara', array('acara' => $this->db->get('acara')->result_array()));
 		$this->load->view('public/templates/footer');
 	}
 
@@ -122,11 +125,16 @@ class Home extends CI_Controller
 			$this->load->view('public/pages/index');
 			$this->load->view('public/templates/footer');
 		} else {
-			if ($this->db->insert('subscriber', array('email' => $email)))
-			{
-				redirect();
+			if ( ! $this->db->get_where('subscriber', array('email' => $email))->row_array()) {
+				if ($this->db->insert('subscriber', array('email' => $email)))
+				{
+					redirect();
+				} else {
+					redirect();
+				}
 			} else {
-				redirect();
+				$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Maaf email sudah ada!</div>');
+            	redirect('');
 			}
 		}
 	}
